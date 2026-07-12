@@ -1,0 +1,16 @@
+# --- Core RAG stack ---
+arxiv==2.1.3                 # fetch papers from the arXiv API (no auth needed)
+# torch pinned to the last release with Intel-Mac (x86_64) wheels. On Apple
+# Silicon or Linux you can drop this pin and let sentence-transformers choose.
+torch==2.2.2                 # requires Python <=3.12 on Intel Mac
+numpy<2                      # torch 2.2.2 is built against NumPy 1.x; NumPy 2 crashes it
+sentence-transformers==3.3.1 # local embedding models (runs on CPU)
+chromadb==0.5.23             # local vector database
+anthropic>=0.40.0            # Claude API client (generation step)
+python-dotenv==1.0.1         # load ANTHROPIC_API_KEY from .env
+
+# --- Optional: reranking (the "medium difficulty" quality lever) ---
+# sentence-transformers already includes CrossEncoder for reranking.
+
+# --- Optional: evaluation ---
+# We compute retrieval hit-rate ourselves in eval/evaluate.py (no extra deps).
